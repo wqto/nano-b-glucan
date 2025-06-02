@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>βグルカンの真価を発見 | インタラクティブ・レポート</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .tab-button.active {
+            background-color: #f59e0b;
+            color: #ffffff;
+            font-weight: 700;
+        }
+        .benefit-card {
+            transition: all 0.3s ease-in-out;
+        }
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .tech-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .particle {
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .large-particle {
+            width: 80px;
+            height: 80px;
+            background: #9ca3af;
+        }
+        .nano-particle {
+            width: 10px;
+            height: 10px;
+            background: #f59e0b;
+        }
+        .capsule-diagram {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background-color: rgba(245, 158, 11, 0.3);
+            border: 2px solid #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .capsule-core {
+            font-weight: bold;
+            color: #b45309;
+        }
+        .encapsulated {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #14b8a6;
+            border-radius: 50%;
+        }
+        .floating-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            @media (max-width: 767px) {
+                bottom: 10px;
+                right: 10px;
+                font-size: 0.875rem; /* text-sm */
+                padding: 0.5rem 1rem; /* py-2 px-4 */
+            }
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-amber-600">βグルカンの新時代</h1>
+            <div class="flex space-x-4">
+                <a href="#benefits" class="text-stone-600 hover:text-amber-600 transition">３つの力</a>
+                <a href="#timing" class="text-stone-600 hover:text-amber-600 transition">摂取タイミング</a>
+                <a href="#tech" class="text-stone-600 hover:text-amber-600 transition">画期的な技術</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        
+        <section id="hero" class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-amber-700">未来の健康は「ナノ」で変わる。</h2>
+            <p class="max-w-3xl mx-auto text-lg text-stone-600">
+                βグルカンは、キノコ類、酵母、大麦、オーツ麦などの食品に含まれる食物繊維の一種で、健康維持や増進に役立つ様々な効果が期待されています。この驚くべき食物繊維が、私たちの健康の土台をいかに支えているか、そして最新技術がその可能性をどう飛躍させたのか。その全貌を解き明かします。
+            </p>
+        </section>
+
+        <section id="benefits" class="mb-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold mb-2">βグルカンが持つ「３つの力」</h3>
+                <p class="text-stone-600">βグルカンは、私たちの体を内側から多角的にサポートする「縁の下の力持ち」です。ここでは、特にアウレオバシジウム培養液由来のβグルカンに期待される代表的な３つの働きをご紹介します。詳細を知りたい場合は、それぞれのカードをクリックしてください。</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center benefit-card cursor-pointer" data-benefit="immune">
+                    <div class="mx-auto mb-4 w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center text-3xl">🛡️</div>
+                    <h4 class="text-xl font-bold mb-2 text-teal-700">体の「守り」を強くする</h4>
+                    <p class="text-stone-600 text-sm mb-4">免疫細胞の活性を高め、過剰な免疫反応を抑える調節作用も示唆されています。</p>
+                    <div class="benefit-detail hidden text-left">
+                        <p class="text-stone-600 text-sm mt-2">アウレオバシジウム培養液由来のβグルカンは、私たちの体が持つ「免疫力」をサポートし、外部からのウイルスや細菌と戦う力を高めると言われています。これにより、感染症予防だけでなく、アレルギー症状の緩和にも役立つ可能性があります。</p>
+                    </div>
+                    <button class="toggle-detail-btn mt-4 text-amber-600 hover:text-amber-800 font-semibold text-sm">詳細を見る 👉</button>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center benefit-card cursor-pointer" data-benefit="gut">
+                    <div class="mx-auto mb-4 w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center text-3xl">🌿</div>
+                    <h4 class="text-xl font-bold mb-2 text-amber-700">お腹の調子を整える</h4>
+                    <p class="text-stone-600 text-sm mb-4">腸内の「善玉菌」のエサとなり、腸内環境を良好に保つ手助けをします。</p>
+                    <div class="benefit-detail hidden text-left">
+                        <p class="text-stone-600 text-sm mt-2">βグルカンは水溶性食物繊維として、腸内の「善玉菌」のエサとなり、腸内環境を良好に保つ手助けをします。これにより、お通じの改善や、体全体の調子を整えることにも繋がります。</p>
+                    </div>
+                    <button class="toggle-detail-btn mt-4 text-amber-600 hover:text-amber-800 font-semibold text-sm">詳細を見る 👉</button>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center benefit-card cursor-pointer" data-benefit="lifestyle">
+                    <div class="mx-auto mb-4 w-16 h-16 rounded-full bg-sky-100 flex items-center justify-center text-3xl">⚖️</div>
+                    <h4 class="text-xl font-bold mb-2 text-sky-700">生活習慣をサポート</h4>
+                    <p class="text-stone-600 text-sm mb-4">抗炎症作用、血糖値やコレステロール値の改善、そして抗がん作用も期待されています。</p>
+                    <div class="benefit-detail hidden text-left">
+                        <p class="text-stone-600 text-sm mt-2">アウレオバシジウム培養液由来のβグルカンは、優れた抗炎症作用が確認されており、様々な病気の原因となる炎症を抑える働きが期待されます。また、食後の血糖値の急上昇を穏やかにしたり、悪玉コレステロール値を低下させたりする可能性も示唆されており、生活習慣病の予防に繋がる重要な効果です。さらに、試験管レベルや動物実験では、がん細胞の増殖を抑制したり、免疫細胞によるがん細胞の攻撃を助けたりする効果も報告されており、今後の研究が期待されています。</p>
+                    </div>
+                    <button class="toggle-detail-btn mt-4 text-amber-600 hover:text-amber-800 font-semibold text-sm">詳細を見る 👉</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="timing" class="mb-20 bg-stone-100 p-8 rounded-2xl">
+            <div class="text-center mb-8">
+                <h3 class="text-3xl font-bold mb-2">最適な摂取タイミングは？</h3>
+                <p class="text-stone-600">βグルカンの効果は、いつ摂取するかによっても期待される内容が変わります。あなたの目的に合わせて、最適なタイミングを見つけてみましょう。下のボタンをクリックして、それぞれのメリットを確認してください。</p>
+            </div>
+            <div class="flex justify-center gap-4 mb-8">
+                <button id="morningBtn" class="tab-button px-6 py-3 rounded-lg bg-white shadow-md hover:bg-amber-400 hover:text-white transition active">朝に摂取</button>
+                <button id="nightBtn" class="tab-button px-6 py-3 rounded-lg bg-white shadow-md hover:bg-amber-400 hover:text-white transition">夜に摂取</button>
+            </div>
+            <div id="morningContent" class="timing-content bg-white p-6 rounded-lg shadow">
+                <h4 class="text-2xl font-bold mb-4 text-amber-600">🌅 朝の摂取で、日中をアクティブに</h4>
+                <ul class="space-y-3 list-disc list-inside text-stone-700">
+                    <li><b>習慣化しやすい:</b> 毎日の朝食ルーティンに組み込み、飲み忘れを防ぎます。</li>
+                    <li><b>血糖値コントロール:</b> 朝食前に摂ることで、食後血糖値の上昇を抑制。さらに、昼食後の血糖値にも良い影響を与える「セカンドミール効果」も期待できます。</li>
+                    <li><b>日中の活動サポート:</b> これから始まる活動的な一日に向けて、体のコンディションを整えます。</li>
+                </ul>
+            </div>
+            <div id="nightContent" class="timing-content bg-white p-6 rounded-lg shadow hidden">
+                <h4 class="text-2xl font-bold mb-4 text-indigo-600">🌙 夜の摂取で、体をリペア</h4>
+                <ul class="space-y-3 list-disc list-inside text-stone-700">
+                    <li><b>体の修復と連携:</b> 成長ホルモンが分泌される就寝中に、体の修復や免疫機能の調整をサポートします。</li>
+                    <li><b>睡眠の質を向上:</b> 一部のβグルカンには、眠りを深くし、起床時の疲労感を和らげる効果が報告されています。</li>
+                    <li><b>腸内環境の改善:</b> 就寝中に腸内で善玉菌が働くのを助け、静かな環境で腸活を促進します。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="tech" class="py-10">
+            <div class="text-center mb-12">
+                 <h3 class="text-3xl font-bold mb-2">見過ごされてきた「課題」と「画期的な解決策」</h3>
+                 <p class="max-w-3xl mx-auto text-stone-600">βグルカンは素晴らしい成分ですが、実はその真価を発揮する上で大きな壁がありました。しかし、日本の研究者がその壁を打ち破る特許技術を開発したのです。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="text-center md:text-left">
+                    <h4 class="text-2xl font-bold mb-3 text-gray-700">課題：水に溶けにくく、吸収されにくい</h4>
+                    <p class="text-stone-600 mb-6">従来のβグルカンは粒子が大きく水に溶けにくいため、体内で十分に吸収されず、その効果を最大限に発揮できていませんでした。良い成分も、体に届かなければ意味がありません。</p>
+                    <div class="tech-diagram bg-gray-100 p-6 rounded-lg">
+                        <div class="large-particle">従来型</div>
+                        <div class="text-5xl font-thin text-red-500">→ X</div>
+                        <div class="w-1 h-24 bg-gray-300 border-l-4 border-dashed border-gray-400"></div>
+                        <span class="text-gray-500 font-bold">吸収の壁</span>
+                    </div>
+                </div>
+                <div class="text-center md:text-left">
+                    <h4 class="text-2xl font-bold mb-3 text-amber-700">解決策：甲元教授の「ナノ化技術」</h4>
+                    <p class="text-stone-600 mb-6">この問題を解決したのが、独自の「ナノ化技術」です。βグルカンを肉眼では見えないナノメートルサイズにまで微細化することに成功しました。</p>
+                    <div class="tech-diagram bg-green-50 p-6 rounded-lg">
+                        <div class="flex flex-wrap gap-1 w-20 h-20 justify-center items-center">
+                            <div class="nano-particle"></div><div class="nano-particle"></div><div class="nano-particle"></div>
+                            <div class="nano-particle"></div><div class="nano-particle"></div><div class="nano-particle"></div>
+                            <div class="nano-particle"></div><div class="nano-particle"></div><div class="nano-particle"></div>
+                        </div>
+                        <div class="text-5xl font-thin text-green-500">→ ✓</div>
+                        <div class="w-1 h-24 bg-gray-300 border-l-4 border-dashed border-gray-400"></div>
+                        <span class="text-green-600 font-bold">吸収</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-xl">
+                <div class="grid md:grid-cols-5 gap-8 items-center">
+                    <div class="md:col-span-3">
+                         <h4 class="text-2xl font-bold mb-4">溶解度150倍！データが示す圧倒的な差</h4>
+                         <p class="text-stone-600 mb-4">ナノ化技術により、水への溶解度は劇的に向上。下のグラフは、従来型と比較した溶解度の違いを示しています。この「溶けやすさ」が、体内への吸収率を格段に高める鍵なのです。</p>
+                        <div class="chart-container">
+                            <canvas id="solubilityChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 text-center">
+                         <h4 class="text-2xl font-bold mb-4">他の栄養素も運ぶ「カプセル機能」</h4>
+                         <p class="text-stone-600 mb-6">さらに驚くべきは、ナノ化βグルカンがポリフェノール、クルクミン、そしてその他様々な栄養成分を内部に包み込み、一緒に体内へ運ぶことができる点です。これにより、単一の成分だけでなく、複数の成分を効率的に摂取し、その吸収率も同時に高めることができます。</p>
+                         <div class="capsule-diagram mx-auto">
+                            <span class="capsule-core">βグルカン</span>
+                            <div class="encapsulated" style="top: 20%; left: 15%;"></div>
+                            <div class="encapsulated" style="top: 65%; left: 25%;"></div>
+                            <div class="encapsulated" style="top: 30%; left: 70%;"></div>
+                            <div class="encapsulated" style="bottom: 15%; right: 20%;"></div>
+                         </div>
+                         <p class="mt-4 text-sm text-teal-600 font-semibold">青丸：ポリフェノール、クルクミン等の機能性成分</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <a href="https://threebalance.cart.fc2.com/?_gl=1*zatu3*_gcl_au*MTgyMDQwMjk1MC4xNzQyOTc5NTM5" target="_blank" rel="noopener noreferrer" class="floating-link inline-block bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+        特許技術のβグルカンはコチラ
+    </a>
+
+    <footer class="bg-stone-800 text-white mt-20">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <h3 class="text-2xl font-bold mb-4 text-amber-400">あなたの健康のために、新しい選択を。</h3>
+            <p class="max-w-2xl mx-auto text-stone-300 mb-6">
+                ナノ化技術によって真の力を解き放たれたβグルカン。日々の健康習慣に、この科学的根拠に裏付けられたβグルカンを取り入れてみませんか？
+            </p>
+            <p class="text-sm text-stone-400">&copy; 2025 βグルカン インタラクティブ・レポート. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const morningBtn = document.getElementById('morningBtn');
+            const nightBtn = document.getElementById('nightBtn');
+            const morningContent = document.getElementById('morningContent');
+            const nightContent = document.getElementById('nightContent');
+
+            morningBtn.addEventListener('click', () => {
+                morningContent.classList.remove('hidden');
+                nightContent.classList.add('hidden');
+                morningBtn.classList.add('active');
+                nightBtn.classList.remove('active');
+            });
+
+            nightBtn.addEventListener('click', () => {
+                nightContent.classList.remove('hidden');
+                morningContent.classList.add('hidden');
+                nightBtn.classList.add('active');
+                morningBtn.classList.remove('active');
+            });
+
+            const benefitCards = document.querySelectorAll('.benefit-card');
+            benefitCards.forEach(card => {
+                const toggleBtn = card.querySelector('.toggle-detail-btn');
+                const detailContent = card.querySelector('.benefit-detail');
+
+                toggleBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    detailContent.classList.toggle('hidden');
+                    if (detailContent.classList.contains('hidden')) {
+                        toggleBtn.innerHTML = '詳細を見る 👉';
+                    } else {
+                        toggleBtn.innerHTML = '閉じる 👆';
+                    }
+                });
+            });
+
+
+            const ctx = document.getElementById('solubilityChart').getContext('2d');
+            const solubilityChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['従来型βグルカン', 'ナノ化βグルカン'],
+                    datasets: [{
+                        label: '水への溶解度（倍）',
+                        data: [1, 150],
+                        backgroundColor: [
+                            'rgba(156, 163, 175, 0.6)',
+                            'rgba(245, 158, 11, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(107, 114, 128, 1)',
+                            'rgba(217, 119, 6, 1)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 5,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '溶解度（従来型を1とした場合）',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        y: {
+                           ticks: {
+                               font: {
+                                   size: 14,
+                                   weight: 'bold'
+                               }
+                           }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.x !== null) {
+                                        label += context.parsed.x + ' 倍';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = document.querySelector('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>
